@@ -1,21 +1,15 @@
 version: '3'
-
 services:
-  allure:
-    image: "frankescobar/allure-docker-service"
-    environment:
-      CHECK_RESULTS_EVERY_SECONDS: NONE
-      KEEP_HISTORY: 1
-      KEEP_HISTORY_LATEST: 25
-    ports:
-      - "5050:5050"
-    volumes:
-      - ${PWD}/projects:/app/projects
-
-  allure-ui:
-    image: "frankescobar/allure-docker-service-ui"
-    environment:
-      ALLURE_DOCKER_PUBLIC_API_URL: "http://localhost:5050"
-      ALLURE_DOCKER_PUBLIC_API_URL_PREFIX: ""
-    ports:
-      - "5252:5252"
+ selenoid:
+   network_mode: bridge
+   image: aerokube/selenoid
+   volumes:
+     - "/docker:/etc/selenoid"
+     - "/var/run/docker.sock:/var/run/docker.sock"
+     - "/docker/video:/opt/selenoid/video"
+   environment:
+     - OVERRIDE_VIDEO_OUTPUT_DIR=/opt/selenium/video
+     - TZ=Europe/Amsterdam
+   command: ["-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video"]
+   ports:
+     - "4444:4444"
