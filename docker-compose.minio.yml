@@ -21,8 +21,8 @@ services:
       GITLAB_JOB_RETRIES: 'false'
       MINIO_ACCESS_KEY: '<minio-user>'
       MINIO_SECRET_KEY: '<minio-pass>'
-      MINIO_ENDPOINT: 'localhost'
-      MINIO_URL: 'http://localhost'
+      MINIO_ENDPOINT: 'https://yettel-jenkins.eu.content-bloom.com'
+      MINIO_URL: 'https://yettel-jenkins.eu.content-bloom.com'
       MINIO_PORT: '1000'
       MINIO_USESSL: 'false'
       MINIO_BUCKET: sorry-cypress
@@ -48,7 +48,7 @@ services:
   dashboard:
     image: agoldis/sorry-cypress-dashboard:latest
     environment:
-      GRAPHQL_SCHEMA_URL: http://localhost:4000
+      GRAPHQL_SCHEMA_URL: https://yettel-jenkins.eu.content-bloom.com:8083
       GRAPHQL_CLIENT_CREDENTIALS: ''
       PORT: 2020
       CI_URL: ''
@@ -75,7 +75,7 @@ services:
     entrypoint: >
       /bin/sh -c "
       sleep 3;
-      /usr/bin/mc config host add myminio http://localhost:9000 <minio-user> <minio-pass>;
+      /usr/bin/mc config host add myminio https://yettel-jenkins.eu.content-bloom.com:1000 <minio-user> <minio-pass>;
       /usr/bin/mc rm -r --dangerous --force myminio/sorry-cypress;
       /usr/bin/mc mb myminio/sorry-cypress;
       /usr/bin/mc anonymous set download myminio/sorry-cypress;
