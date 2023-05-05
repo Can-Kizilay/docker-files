@@ -54,7 +54,7 @@ services:
   dashboard:
     image: agoldis/sorry-cypress-dashboard:latest
     environment:
-      GRAPHQL_SCHEMA_URL: https://yettel-jenkins.eu.content-bloom.com:7085
+      GRAPHQL_SCHEMA_URL: https://yettel-jenkins.eu.content-bloom.com:8085
       GRAPHQL_CLIENT_CREDENTIALS: ''
       PORT: 8081
       CI_URL: ''
