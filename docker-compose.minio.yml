@@ -72,7 +72,7 @@ services:
       MINIO_ROOT_PASSWORD: '<minio-pass>'
     volumes:
       - ./data/data-minio-cypress:/data
-    command: minio server --console-address ":9090" /data
+    command: minio server --console-address ":1010" /data
 
   createbuckets:
     image: minio/mc
