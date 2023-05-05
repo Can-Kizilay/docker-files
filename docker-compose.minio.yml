@@ -25,11 +25,11 @@ services:
 
       SCREENSHOTS_DRIVER: '../screenshots/minio.driver'
       GITLAB_JOB_RETRIES: 'false'
-      MINIO_ACCESS_KEY: '<minio-user>'
-      MINIO_SECRET_KEY: '<minio-pass>'
-      MINIO_ENDPOINT: '<minio-ip-address>'
-      MINIO_URL: 'http://<minio-ip-address>'
-      MINIO_PORT: '1000'
+      MINIO_ACCESS_KEY: 'minioAdmin'
+      MINIO_SECRET_KEY: 'minioPass'
+      MINIO_ENDPOINT: 'https://yettel-jenkins.eu.content-bloom.com'
+      MINIO_URL: 'https://yettel-jenkins.eu.content-bloom.com'
+      MINIO_PORT: '8084'
       MINIO_USESSL: 'false'
       MINIO_BUCKET: sorry-cypress
       PROBE_LOGGER: "false"
@@ -82,7 +82,7 @@ services:
     entrypoint: >
       /bin/sh -c "
       sleep 3;
-      /usr/bin/mc config host add myminio https://yettel-jenkins.eu.content-bloom.com:7083 <minio-user> <minio-pass>;
+      /usr/bin/mc config host add myminio https://yettel-jenkins.eu.content-bloom.com:8083 <minio-user> <minio-pass>;
       /usr/bin/mc rm -r --dangerous --force myminio/sorry-cypress;
       /usr/bin/mc mb myminio/sorry-cypress;
       /usr/bin/mc anonymous set download myminio/sorry-cypress;
